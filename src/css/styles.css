@@ -1,13 +1,38 @@
 body {
     background-color: #222;
     color: #fafafa;
-    padding-top: 40px;
     font-family: 'Cute Font', cursive;
+    padding-top: 60px;
+}
 
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'VT323', monospace;
 }
 
 p, span, td {
     font-size: 20px;
+}
+
+.logo {
+    height: 60px;
+    width: auto;
+    position: absolute;
+    left: 20px;
+    top: 10px;
+}
+
+#accountAddress {
+    position: absolute;
+    right: 10px;
+    top: 27px
+
+}
+
+.header-text {
+    position: absolute;
+    left: 70px;
+    top: 0px
+
 }
 
 .app-container {
@@ -16,12 +41,15 @@ p, span, td {
 
 .account-header {
     font-family: 'VT323', monospace;
-    font-size: 18px;
-    position: absolute;
+    background-color: #5cb85c;
+    text-align: right;
+    font-size: 14px;
+    position: fixed;
+    z-index: 10001;
     top: 0;
     left: 0;
     right: 0;
-    height: 15px;
+    height: 80px;
     display: flex;
     align-items: center;
     justify-content: center;

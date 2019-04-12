@@ -3,18 +3,18 @@ App = {
   contracts: {},
   account: '0x0',
 
-  init: function() {
+  init: () => {
     return App.initWeb3();
   },
 
-  initWeb3: function() {
+  initWeb3: () => {
     App.web3Provider = new Web3.providers.HttpProvider('http://localhost:8545');
     web3 = new Web3(App.web3Provider)
     return App.initContract();
   },
 
-  initContract: function() {
-    $.getJSON("Election.json", function(election) {
+  initContract: () => {
+    $.getJSON("Election.json", election => {
       // Instantiate a new truffle contract from the artifact
       App.contracts.Election = TruffleContract(election);
       // Connect provider to interact with contract
@@ -24,24 +24,24 @@ App = {
     });
   },
 
-  castVote: function() {
+  castVote: () => {
     var candidateId = $('#candidatesSelect').val();
     App.contracts.Election.deployed().then(function(instance) {
       return instance.vote(candidateId, { from: App.account });
-    }).then(function(result) {
+    }).then(result => {
       // Wait for votes to update
       App.render()
-    }).catch(function(err) {
+    }).catch(err => {
       console.error(err);
     });
   },
 
-  listenForEvents: function() {
-    App.contracts.Election.deployed().then(function(instance) {
+  listenForEvents: () => {
+    App.contracts.Election.deployed().then(instance => {
       instance.votedEvent({}, {
         fromBlock: 0,
         toBlock: 'latest'
-      }).watch(function(error, event) {
+      }).watch((error, event) => {
         console.log("event triggered", event)
         // Reload when a new vote is recorded
         App.render();
@@ -49,7 +49,7 @@ App = {
     });
   },
 
-  render: function() {
+  render: () => {
     var electionInstance;
     var loader = $("#loader");
     var content = $("#content");
@@ -59,14 +59,14 @@ App = {
   
     // Load account data
     App.account = web3.eth.accounts[2];
-    $("#accountAddress").html("Your Account: " + web3.eth.accounts[2]);
+    $("#accountAddress").html('<span class="hidden-sm">Account: </span>' + web3.eth.accounts[2]);
   
     // Load contract data
-    App.contracts.Election.deployed().then(function(instance) {
+    App.contracts.Election.deployed().then(instance => {
       electionInstance = instance;
       return electionInstance.candidatesCount();
     })
-    .then(function(candidatesCount) {
+    .then(candidatesCount => {
       var candidatesResults = $("#candidatesResults");
       candidatesResults.empty();
   
@@ -74,7 +74,7 @@ App = {
       candidatesSelect.empty();
   
       for (var i = 1; i <= candidatesCount; i++) {
-        electionInstance.candidates(i).then(function(candidate) {
+        electionInstance.candidates(i).then(candidate => {
           var id = candidate[0];
           var name = candidate[1];
           var party = candidate[2];
@@ -91,7 +91,7 @@ App = {
       }
       return electionInstance.voters(App.account);
     })
-    .then(function(hasVoted) {
+    .then(hasVoted => {
       // Do not allow a user to vote
       if(hasVoted) {
         $('form').hide();
@@ -99,15 +99,14 @@ App = {
       loader.hide();
       content.show();
     })
-    .catch(function(error) {
+    .catch(error => {
       console.warn(error);
     });
   }
-  
 };
 
-$(function() {
-  $(window).load(function() {
+$(() => {
+  $(window).load(() => {
     App.init();
   });
 });

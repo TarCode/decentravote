@@ -8,12 +8,23 @@
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cute+Font" rel="stylesheet">
+
+    <link href="css/styles.css" rel="stylesheet">
   </head>
   <body>
-    <div class="container" style="width: 650px;">
+    <div class="container app-container">
+      <div class="account-header">
+        <div><p id="accountAddress" class="text-center"></p></div>
+      </div>
       <div class="row">
         <div class="col-lg-12">
-          <h1 class="text-center">Election Results</h1>
+          <br/>
+          <h1 class="text-center">Decentralized Elections</h1>
+          <p class="text-center">With elections coming up in South Africa, we could really use something like this. 
+            <br/>
+            (Just a demo on the testnet. Lol. (*These are not real people. ^_^))</p>
           <hr/>
           <br/>
           <div id="loader">
@@ -32,7 +43,7 @@
               </tbody>
             </table>
             <hr/>
-            <p id="accountAddress" class="text-center"></p>
+           
           </div>
         </div>
       </div>
@@ -46,7 +57,7 @@
         <button type="submit" class="btn btn-primary">Vote</button>
         <hr />
       </form>
-      
+
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

@@ -1,0 +1,28 @@
+body {
+    background-color: #222;
+    color: #fafafa;
+    padding-top: 40px;
+    font-family: 'Cute Font', cursive;
+
+}
+
+p, span, td {
+    font-size: 18px;
+}
+
+.app-container {
+    position: relative;
+}
+
+.account-header {
+    font-family: 'VT323', monospace;
+    font-size: 18px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
